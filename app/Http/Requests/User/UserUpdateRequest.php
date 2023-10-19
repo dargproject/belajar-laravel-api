@@ -23,7 +23,7 @@ class UserUpdateRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,' . $this->user->id . ',id',
+            'email' => 'required|email|unique:users,email,'.$this->user->id.',id',
             'password' => 'required|string',
             'is_admin' => 'required|boolean',
         ];

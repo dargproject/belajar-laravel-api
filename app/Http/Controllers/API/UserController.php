@@ -8,7 +8,6 @@ use App\Http\Requests\User\UserUpdateRequest;
 use App\Http\Resources\User\UserIndexResource;
 use App\Http\Resources\User\UserResource;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
@@ -21,6 +20,7 @@ class UserController extends Controller
         $user = UserIndexResource::collection(
             User::query()->paginate(5)
         );
+
         return response()->json([
             'status' => true,
             'message' => 'Data Berhasil ditampilan',
@@ -28,7 +28,7 @@ class UserController extends Controller
             'meta' => [
                 'total' => $user->total(),
                 'per_page' => $user->perPage(),
-            ]
+            ],
         ]);
     }
 
@@ -43,7 +43,7 @@ class UserController extends Controller
         return response()->json([
             'status' => true,
             'message' => 'Data Berhasil ditambahkan',
-            'data' => new UserResource($user)
+            'data' => new UserResource($user),
 
         ], Response::HTTP_CREATED);
 
@@ -57,7 +57,7 @@ class UserController extends Controller
         return response()->json([
             'status' => true,
             'message' => 'Data Berhasil ditampilkan',
-            'data' => new UserResource($user)
+            'data' => new UserResource($user),
 
         ]);
     }
@@ -72,7 +72,7 @@ class UserController extends Controller
         return response()->json([
             'status' => true,
             'message' => 'Data Berhasil Diubah',
-            'data' => new UserResource($user)
+            'data' => new UserResource($user),
 
         ]);
 
@@ -88,7 +88,7 @@ class UserController extends Controller
         return response()->json([
             'status' => true,
             'message' => 'Data Berhasil Dihapus',
-            'data' => []
+            'data' => [],
         ], Response::HTTP_NO_CONTENT);
     }
 }
